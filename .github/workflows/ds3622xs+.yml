@@ -59,7 +59,7 @@ jobs:
           sn=`./redpill_tool_chain.sh sn ${{matrix.platform}} | grep 'Serial Number' | awk '{print $3}'`
           sed -i -e "s/1234XXX123/${sn:="20C0SQRLV2WVM"}/g" -e 's/XXYYXXYYXXYY/00113240D4FC/g' ${{matrix.platform}}_user_config.json
           # 添加第二张网卡mac并设置网卡数量
-          sed -i -e 's/00113240D4FC"/&,\n\t"netif_num": 5/' ${{matrix.platform}}_user_config.json
+          sed -i -e 's/00113240D4FC"/&,\n\t"netif_num": 4/' ${{matrix.platform}}_user_config.json
           # 调整synoinfo
           sed -i -e 's/"synoinfo": {},/"synoinfo": {\n\t"maxlanport": "2"\n    },/' ${{matrix.platform}}_user_config.json
           cat ${{matrix.platform}}_user_config.json
