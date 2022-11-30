@@ -61,7 +61,7 @@ jobs:
           # 添加第二张网卡mac并设置网卡数量
           sed -i -e 's/00113240D4FC"/&,\n\t"netif_num": 4/' ${{matrix.platform}}_user_config.json
           # 调整直通 PCI 的 SATA 顺序
-          sed -i -e 's/${{ secrets.DS3622xs_MAC }}"/&,\n\t"DiskIdxMap": "00",\n\t"SataPortMap": "64",\n\t"SasIdxMap": "00"/' ${{matrix.platform}}_user_config.json
+          sed -i -e 's/"netif_num": 4"/&,\n\t"DiskIdxMap": "00",\n\t"SataPortMap": "64",\n\t"SasIdxMap": "00"/' ${{matrix.platform}}_user_config.json
           # 调整synoinfo
           sed -i -e 's/"synoinfo": {},/"synoinfo": {\n\t"maxlanport": "2"\n    },/' ${{matrix.platform}}_user_config.json
           cat ${{matrix.platform}}_user_config.json
